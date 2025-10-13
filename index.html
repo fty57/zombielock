@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/zumbi_favicon.png" />
+
+    <!-- Remix Icon -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>ZombieLock</title>
+  </head>
+  <body>
+    <div class="game-container" class="zombie-theme">
+      <header class="top-bar">
+        <button id="mute-button" class="icon-button top-left">
+          <i id="mute-icon" class="ri-volume-up-fill"></i>
+        </button>
+
+        <button id="reset-button" class="icon-button top-right">
+          <i id="reset-icon" class="ri-repeat-2-fill"></i>
+        </button>
+      </header>
+
+      <div id="timer-display" class="timer-style">10:00</div>
+
+      <button id="pause-play-button" class="icon-button">
+        <i id="pause-play-icon" class="ri-play-fill"></i>
+      </button>
+
+      <main id="puzzle-area"></main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
