@@ -3,11 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let timeRemaining = 600; // 60 minutos em segundos (MM:SS)
   let timerInterval;
   let isPaused = true;
+  let isMuted = true;
+
+  // --- Efeito Sonoro ---
+  const buttonSound = new Audio('./assets/sounds/sound_click.wav');
+  const ambienceSound = new Audio('./assets/sounds/sound_dark.mp3')
+  ambienceSound.loop = true;
 
   // --- Elementos do DOM ---
   const timerDisplay = document.getElementById('timer-display');
   const pausePlayButton = document.getElementById('pause-play-button');
   const pausePlayIcon = pausePlayButton.querySelector('i');
+  const muteButton = document.getElementById('mute-button');
+  const muteIcon = muteButton.querySelector('i');
 
   // --- Funções de Ajuda ---
   function formatTime(seconds) {
@@ -54,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function togglePausePlay() {
+    buttonSound.currentTime = 0;
+    buttonSound.play();
+
     isPaused = !isPaused;
     if (isPaused) {
       pauseTimer();
@@ -61,6 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
       startTimer();
       pausePlayIcon.className = 'ri-pause-fill';
     }
+  }
+
+  function toggleMute() {
+    if (isMuted) {
+      ambienceSound.play();
+      muteIcon.className = 'ri-volume-mute-fill';
+    } else {
+      ambienceSound.pause();
+      ambienceSound.currentTime = 0;
+      muteIcon.className = 'ri-volume-up-fill';
+    }
+    isMuted = !isMuted;
   }
 
   // 1. Atualiza o display do cronômetro
@@ -71,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Adiciona Listeners de Evento
   pausePlayButton.addEventListener('click', togglePausePlay);
+  muteButton.addEventListener('click', toggleMute);
   codeEntryButton.addEventListener('click', handleCodeEntry);
   penaltyButton.addEventListener('click', handlePenalty);
   hintButton.addEventListener('click', handleHint);
